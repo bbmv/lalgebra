@@ -8,10 +8,10 @@ There are unit tests and a JSDoc documentation in the repository.
 ## API
 
 ``` lalgebra.Matrix.determinant() ```
-  *Computes a determinant of the matrix.*
+- *Computes a determinant of the matrix.*
 
 ``` lalgebra.Matrix.getCopy() ```
-  *Copies the matrix.*
+- *Copies the matrix.*
 
 ``` lalgebra.Matrix.getMinor(idxRow, idxCol) ```
 > *Gets a submatrix without one row and one column.*
