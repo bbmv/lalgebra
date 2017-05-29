@@ -1,20 +1,20 @@
-#Linear Algebra Library
+# Linear Algebra Library
 lalgebra.js (c) 2017 Boris Buimov
 version 1.0.0
 
 This library contains functions and a class for working with elements of linear algebra - points, lines, segments, planes, vectors and matrixes.
 There are unit tests and a JSDoc documentation in the repository.
 
-##API
+## API
 
 **lalgebra.Matrix.determinant()**
-  *Computes a determinant of the matrix.*
+> *Computes a determinant of the matrix.*
 
 **lalgebra.Matrix.getCopy()**
-  *Copies the matrix.*
+> *Copies the matrix.*
 
 **lalgebra.Matrix.getMinor(idxRow, idxCol)**
-  *Gets a submatrix without one row and one column.*
+> *Gets a submatrix without one row and one column.*
 
 **lalgebra.Matrix.inverse()**
   *Inverses the matrix.*
