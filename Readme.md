@@ -7,52 +7,50 @@ There are unit tests and a JSDoc documentation in the repository.
 
 ## API
 
-...
-lalgebra.Matrix.determinant()
-...
+``` lalgebra.Matrix.determinant() ```
 > *Computes a determinant of the matrix.*
 
-...
+```
 lalgebra.Matrix.getCopy()
-...
+```
 > *Copies the matrix.*
 
-... lalgebra.Matrix.getMinor(idxRow, idxCol) ...
+``` lalgebra.Matrix.getMinor(idxRow, idxCol) ```
 > *Gets a submatrix without one row and one column.*
 
-... lalgebra.Matrix.inverse() ...
+``` lalgebra.Matrix.inverse() ```
 > *Inverses the matrix.*
 
-... lalgebra.Matrix.multiply(matrix) ...
+``` lalgebra.Matrix.multiply(matrix) ```
 > *Multiplys two matrixes.*
 
-... lalgebra.Matrix.trace() ...
+``` lalgebra.Matrix.trace() ```
 > *Displays the array elements into columns like in matrixes.*
 
-... lalgebra.Matrix.transpose() ...
+``` lalgebra.Matrix.transpose() ```
 > *Transposes the matrix.*
 
-... errMsg(massage, code) ...
+``` errMsg(massage, code) ```
 > *Creates an object of Error and adds an error code to it.*
 
-... get2dArray(rows) ...
+``` get2dArray(rows) ```
 > *Creates an empty two-dimensional array.*
 
-... lalgebra.getIntersection(a1, a2, b1, b2) ...
+``` lalgebra.getIntersection(a1, a2, b1, b2) ```
 > *Finds an intersection of two segments.*
 
-... lalgebra.normal(a, b, c) ...
+``` lalgebra.normal(a, b, c) ```
 > *Computes a normal to the plane.*
 
-... lalgebra.scalarProduct(a, b) ...
+``` lalgebra.scalarProduct(a, b) ```
 > *Computes a scalar (dot) product of two vectors.*
 
-... lalgebra.tripleProduct(a, b, c) ...
+``` lalgebra.tripleProduct(a, b, c) ```
 > *Computes a scalar triple product of three vectors.*
 
-... lalgebra.vectorMagnitude(a) ...
+``` lalgebra.vectorMagnitude(a) ```
 > *Computes a magnitude (length) of the vector.*
 
-... lalgebra.vectorProduct(a, b) ...
+``` lalgebra.vectorProduct(a, b) ```
 > *Computes a vector (cross) product of two vectors.*
 
