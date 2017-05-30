@@ -111,7 +111,7 @@ var lalgebra = (function() {
       elems = copy2dArray(array);
       rows = elems.length;
       cols = elems[0].length;
-    }
+    };
     /**
      * Gets elements of the matrix.
      *
@@ -120,7 +120,7 @@ var lalgebra = (function() {
      */
     this.getElems = function() {
       return copy2dArray(elems);
-    }
+    };
     /**
      * Gets an amount of rows of the matrix.
      *
@@ -129,7 +129,7 @@ var lalgebra = (function() {
      */
     this.getRows = function() {
       return rows;
-    }
+    };
     /**
      * Gets an amount of columns of the matrix.
      *
@@ -138,7 +138,7 @@ var lalgebra = (function() {
      */
     this.getCols = function() {
       return cols;
-    }
+    };
     /**
      * Gets an element of the matrix.
      *
@@ -151,7 +151,7 @@ var lalgebra = (function() {
       if(inRange(idxRow, idxCol));
 
       return elems[idxRow][idxCol];
-    }
+    };
     /**
      * Sets a value to the element of the matrix.
      *
@@ -164,7 +164,7 @@ var lalgebra = (function() {
       if(isNumber(val) && inRange(idxRow, idxCol)) {
         elems[idxRow][idxCol] = val;
       }
-    }
+    };
     this.initElems(array);
     /**
      * Checks an index range.
@@ -199,7 +199,7 @@ var lalgebra = (function() {
       str = str + "]";
       console.log(str);
     }
-  }
+  };
   /**
    * Multiplys two matrixes.
    *
@@ -236,7 +236,7 @@ var lalgebra = (function() {
       }
 
     return new Matrix(arrTmp);
-  }
+  };
   /**
    * Transposes the matrix.
    *
@@ -255,7 +255,7 @@ var lalgebra = (function() {
         arrTmp[j][i] = getElem(i, j);
 
     return new Matrix(arrTmp);
-  }
+  };
   /**
    * Copies the matrix.
    *
@@ -274,7 +274,7 @@ var lalgebra = (function() {
         arrTmp[i][j] = getElem(i, j);
 
     return new Matrix(arrTmp);
-  }
+  };
   /**
    * Gets a submatrix without one row and one column.
    *
@@ -302,7 +302,7 @@ var lalgebra = (function() {
       }
     }
     return new Matrix(arrTmp);
-  }
+  };
   /**
    * Computes a determinant of the matrix.
    *
@@ -329,7 +329,7 @@ var lalgebra = (function() {
     }
 
     return det;
-  }     
+  };    
   /**
    * Inverses the matrix.
    *
@@ -353,7 +353,7 @@ var lalgebra = (function() {
         arrTmp[i][j] = Math.pow(-1, 2 + i + j) * this.getMinor(i, j).determinant() / det;
 
     return (new Matrix(arrTmp)).transpose();
-  }    
+  };  
   /**
    * Finds an intersection of two segments.
    *
