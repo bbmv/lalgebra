@@ -388,7 +388,6 @@ var lalgebra = (function() {
       console.log("The segments are not intersection!");
       return false;
     }
-  console.log(t1 + "  " +t2);
 
     inter.x = Math.round(b1.x+(b2.x-b1.x)*t2);
     inter.y = Math.round(b1.y+(b2.y-b1.y)*t2);
@@ -473,22 +472,3 @@ var lalgebra = (function() {
             "normal": normal
           };
 }());
-
-var Matrix = lalgebra.Matrix;
-//------------------------------------------
-var array = 
-  [[1, 0, 0],
-   [1, 1, 1],
-   [0, 0, 1]];
-var array2= 
-  [[1, 0, 0],
-   [0, 1, 0],
-   [0, 0, 1]];
-var mx = new Matrix(array);
-var mx2 = new Matrix(array2);
-var mxRes = mx.multiply(mx2);
-mxRes.trace();
-console.log(mx.getElem(2,1));
-console.log(mx.getRows()+" x "+mx.getCols());
-
-mxRes.getMinor(0,0).trace();
