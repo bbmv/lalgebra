@@ -4,7 +4,7 @@ lalgebra.js (c) 2017 Boris Buimov
 version 1.2.0
 
 This library contains functions and a class for working with elements of linear algebra - points, lines, segments, planes, vectors and matrixes.
-There are unit tests and a JSDoc documentation in the repository.
+(With unit tests and a JSDoc documentation).
 
 #### API
 
