@@ -1,38 +1,51 @@
 ## Linear Algebra Library
 lalgebra.js (c) 2017 Boris Buimov
-version 1.0.0
+
+version 1.2.0
 
 This library contains functions and a class for working with elements of linear algebra - points, lines, segments, planes, vectors and matrixes.
 There are unit tests and a JSDoc documentation in the repository.
 
-### API
+#### API
 
-``` lalgebra.Matrix.determinant() ```
+``` lalgebra.Matrix.initElems(array) ```
+\- *Initialises elements of the matrix.*
+
+``` lalgebra.Matrix.getElems() ```
+\- *Gets elements of the matrix.*
+
+``` lalgebra.Matrix.getRows() ```
+\- *Gets an amount of rows of the matrix.*
+
+``` lalgebra.Matrix.getCols() ```
+\- *Gets an amount of columns of the matrix.*
+
+``` lalgebra.Matrix.getElem(idxRow, idxCol) ```
+\- *Gets an element of the matrix.*
+
+``` lalgebra.Matrix.setElem(val, idxRow, idxCol) ```
+\- *Sets a value to the element of the matrix.*
+
+``` lalgebra.Matrix.Matrix#determinant() ```
 \- *Computes a determinant of the matrix.*
 
-``` lalgebra.Matrix.getCopy() ```
+``` lalgebra.Matrix.Matrix#getCopy() ```
 \- *Copies the matrix.*
 
-``` lalgebra.Matrix.getMinor(idxRow, idxCol) ```
+``` lalgebra.Matrix.Matrix#getMinor(idxRow, idxCol) ```
 \- *Gets a submatrix without one row and one column.*
 
-``` lalgebra.Matrix.inverse() ```
+``` lalgebra.Matrix.Matrix#inverse() ```
 \- *Inverses the matrix.*
 
-``` lalgebra.Matrix.multiply(matrix) ```
+``` lalgebra.Matrix.Matrix#multiply(matrix) ```
 \- *Multiplys two matrixes.*
 
-``` lalgebra.Matrix.trace() ```
+``` lalgebra.Matrix.Matrix#trace() ```
 \- *Displays the array elements into columns like in matrixes.*
 
-``` lalgebra.Matrix.transpose() ```
+``` lalgebra.Matrix.Matrix#transpose() ```
 \- *Transposes the matrix.*
-
-``` errMsg(massage, code) ```
-\- *Creates an object of Error and adds an error code to it.*
-
-``` get2dArray(rows) ```
-\- *Creates an empty two-dimensional array.*
 
 ``` lalgebra.getIntersection(a1, a2, b1, b2) ```
 \- *Finds an intersection of two segments.*
@@ -51,4 +64,8 @@ There are unit tests and a JSDoc documentation in the repository.
 
 ``` lalgebra.vectorProduct(a, b) ```
 \- *Computes a vector (cross) product of two vectors.*
+
+
+
+
 

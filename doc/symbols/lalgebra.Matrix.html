@@ -245,54 +245,6 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
-				
-				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class lalgebra.Matrix.">
-					<caption>Field Summary</caption>
-					<thead>
-						<tr>
-							<th scope="col">Field Attributes</th>
-							<th scope="col">Field Name and Description</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/lalgebra.Matrix.html#array">array</a></b>
-								</div>
-								<div class="description">An array of the matrix elements.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/lalgebra.Matrix.html#cols">cols</a></b>
-								</div>
-								<div class="description">An amount of the matrix columns.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/lalgebra.Matrix.html#rows">rows</a></b>
-								</div>
-								<div class="description">An amount of the matrix rows.</div>
-							</td>
-						</tr>
-					
-					</tbody>
-				</table>
-				
-				
-				
-			
 
 <!-- ============================== methods summary ======================== -->
 			
@@ -307,6 +259,60 @@ ul.inheritsList
 						</tr>
 					</thead>
 					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.Matrix.<b><a href="../symbols/lalgebra.Matrix.html#.getCols">getCols</a></b>()
+								</div>
+								<div class="description">Gets an amount of columns of the matrix.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.Matrix.<b><a href="../symbols/lalgebra.Matrix.html#.getElem">getElem</a></b>(idxRow, idxCol)
+								</div>
+								<div class="description">Gets an element of the matrix.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.Matrix.<b><a href="../symbols/lalgebra.Matrix.html#.getElems">getElems</a></b>()
+								</div>
+								<div class="description">Gets elements of the matrix.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.Matrix.<b><a href="../symbols/lalgebra.Matrix.html#.getRows">getRows</a></b>()
+								</div>
+								<div class="description">Gets an amount of rows of the matrix.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.Matrix.<b><a href="../symbols/lalgebra.Matrix.html#.initElems">initElems</a></b>(array)
+								</div>
+								<div class="description">Initialises elements of the matrix.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/lalgebra.Matrix.html#-inRange">inRange</a></b>(idxRow, idxCol)
+								</div>
+								<div class="description">Checks an index range.</div>
+							</td>
+						</tr>
 					
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
@@ -371,6 +377,15 @@ ul.inheritsList
 							</td>
 						</tr>
 					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.Matrix.<b><a href="../symbols/lalgebra.Matrix.html#.setElem">setElem</a></b>(val, idxRow, idxCol)
+								</div>
+								<div class="description">Sets a value to the element of the matrix.</div>
+							</td>
+						</tr>
+					
 					</tbody>
 				</table>
 				
@@ -414,26 +429,6 @@ ul.inheritsList
 					
 					
 					
-						<dl class="detailList">
-						<dt class="heading">Throws:</dt>
-						
-							<dt>
-								 <b></b>
-							</dt>
-								<dd>Array is undefined.</dd>
-						
-							<dt>
-								 <b></b>
-							</dt>
-								<dd>Array has zero dimension.</dd>
-						
-							<dt>
-								 <b></b>
-							</dt>
-								<dd>Array has a different amount of elements in the rows.</dd>
-						
-						</dl>
-					
 					
 					
 					
@@ -443,83 +438,252 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
-				<div class="sectionTitle">
-					Field Detail
-				</div>
-				
-					<a name="array"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{Array}</span>
-					<b>array</b>
-					
-					</div>
-					<div class="description">
-						An array of the matrix elements.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="cols"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{number}</span>
-					<b>cols</b>
-					
-					</div>
-					<div class="description">
-						An amount of the matrix columns.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="rows"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{number}</span>
-					<b>rows</b>
-					
-					</div>
-					<div class="description">
-						An amount of the matrix rows.
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					
-				
-			
 
 <!-- ============================== method details ========================= -->		
 			
 				<div class="sectionTitle">
 					Method Detail
 				</div>
+				
+					<a name=".getCols"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{number}</span>
+					<span class="light">lalgebra.Matrix.</span><b>getCols</b>()
+					
+					</div>
+					<div class="description">
+						Gets an amount of columns of the matrix.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number}</span> An amount of columns</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getElem"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{number}</span>
+					<span class="light">lalgebra.Matrix.</span><b>getElem</b>(idxRow, idxCol)
+					
+					</div>
+					<div class="description">
+						Gets an element of the matrix.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>idxRow</b>
+									
+								</dt>
+								<dd>An index of the row</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>idxCol</b>
+									
+								</dt>
+								<dd>An index of the column</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number}</span> An element of the matrix</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getElems"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{number}</span>
+					<span class="light">lalgebra.Matrix.</span><b>getElems</b>()
+					
+					</div>
+					<div class="description">
+						Gets elements of the matrix.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number}</span> The elements of the matrix</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getRows"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{number}</span>
+					<span class="light">lalgebra.Matrix.</span><b>getRows</b>()
+					
+					</div>
+					<div class="description">
+						Gets an amount of rows of the matrix.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number}</span> An amount of rows</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".initElems"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">lalgebra.Matrix.</span><b>initElems</b>(array)
+					
+					</div>
+					<div class="description">
+						Initialises elements of the matrix.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Array}</span> <b>array</b>
+									
+								</dt>
+								<dd>An array of elements for the matrix.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-inRange"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					<span class="light">{boolean}</span>
+					<b>inRange</b>(idxRow, idxCol)
+					
+					</div>
+					<div class="description">
+						Checks an index range.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>idxRow</b>
+									
+								</dt>
+								<dd>An index of the row</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>idxCol</b>
+									
+								</dt>
+								<dd>An index of the column</dd>
+							
+							</dl>
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Throws:</dt>
+							
+								<dt>
+									 <b></b>
+								</dt>
+								<dd>The index out of range.</dd>
+							
+							</dl>
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> Returns true if the value is in a range</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
 				
 					<a name=".Matrix#determinant"> </a>
 					<div class="fixedFont">&lt;static&gt; 
@@ -635,7 +799,7 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{Matrix}</span> An minor</dd>
+								<dd><span class="light fixedFont">{Matrix}</span> A minor of the matrix</dd>
 							
 							</dl>
 						
@@ -665,11 +829,6 @@ ul.inheritsList
 						
 							<dl class="detailList">
 							<dt class="heading">Throws:</dt>
-							
-								<dt>
-									 <b></b>
-								</dt>
-								<dd>Attempt to inverse a non quadratic matrix.</dd>
 							
 								<dt>
 									 <b></b>
@@ -804,6 +963,54 @@ ul.inheritsList
 						
 						
 
+					<hr />
+				
+					<a name=".setElem"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">lalgebra.Matrix.</span><b>setElem</b>(val, idxRow, idxCol)
+					
+					</div>
+					<div class="description">
+						Sets a value to the element of the matrix.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>val</b>
+									
+								</dt>
+								<dd>A value for the element</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>idxRow</b>
+									
+								</dt>
+								<dd>An index of the row</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>idxCol</b>
+									
+								</dt>
+								<dd>An index of the column</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
 					
 				
 			
@@ -818,7 +1025,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon May 29 2017 15:47:52 GMT+0700 (KRAT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue May 30 2017 15:08:10 GMT+0700 (KRAT)
 		</div>
 	</body>
 </html>

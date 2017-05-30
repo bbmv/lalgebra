@@ -2,7 +2,7 @@
  * Linear Algebra Library
  * lalgebra.js (c) 2017 Boris Buimov
  * 
- * @version 1.0.0
+ * @version 1.2.0
  * @author Boris Buimov
  * @fileoverview This file contains functions and a class 
  * for working with elements of linear algebra - points, lines, 
@@ -39,52 +39,163 @@ var lalgebra = (function() {
     return arr;
   }
   /**
+   * Checks a value for number.
+   *
+   * @param {number} val A number
+   * @return {boolean} Returns true if the value is a number
+   * @throws The value is not a number.
+   */
+  function isNumber(val) {
+    if(!(!isNaN(parseFloat(val)) && isFinite(val))) {
+      throw errMsg("The value is not a number!", "la-004");
+    }
+    return true;
+  }
+  /**
+   * Copies a two-dimensional array.
+   *
+   * @param {Array} array A two-dimensional array
+   * @return {Array} A copy of the two-dimensional array
+   * @throws Array is undefined.
+   * @throws Array has zero dimension.
+   * @throws Array has a different amount of elements in the rows.
+   */
+  function copy2dArray(array) {
+    var rows, cols, colsTmp, newArr;
+
+    if(!(array instanceof Array)) {
+      throw errMsg("Array is undefined!", "la-001");
+    }
+    rows = array.length;
+    if(rows===0) {
+      throw errMsg("Array has zero dimension!", "la-002");
+    }
+    
+    newArr = get2dArray(rows);
+
+    for(var i=0; i<rows; i+=1) {
+      cols = array[i].length;
+      if(!colsTmp) colsTmp = cols;
+      if(colsTmp!==cols) {
+        throw errMsg("Array has a different amount of elements in the rows!", "la-003");
+      }
+      colsTmp = cols;
+    }
+
+    for(var i=0; i<rows; i+=1)
+      for(var j=0; j<cols; j+=1) 
+        if(isNumber(array[i][j])) {
+          newArr[i][j] = array[i][j];
+        }
+
+    return newArr;
+  }
+  /**
    * Creates a matrix.
    * 
    * @memberof lalgebra
    * @constructor
    * @this {Matrix}
    * @param {Array} array An array of elements for the matrix.
-   * @property {Array} array An array of the matrix elements.
-   * @property {number} rows An amount of the matrix rows.
-   * @property {number} cols An amount of the matrix columns.
-   * @throws Array is undefined.
-   * @throws Array has zero dimension.
-   * @throws Array has a different amount of elements in the rows.
    */
   function Matrix(array) {
-    var rows, cols, colsTmp;
+    var elems, rows, cols;
 
-    if(!array) {
-      throw errMsg("Array is undefined!", "va-mx-001");
+    /**
+     * Initialises elements of the matrix.
+     *
+     * @memberof lalgebra.Matrix
+     * @param {Array} array An array of elements for the matrix.
+     */
+    this.initElems = function(array) {
+      elems = copy2dArray(array);
+      rows = elems.length;
+      cols = elems[0].length;
     }
-    rows = array.length;
-    if(rows===0) {
-      throw errMsg("Array has zero dimension!", "va-mx-002");
+    /**
+     * Gets elements of the matrix.
+     *
+     * @memberof lalgebra.Matrix
+     * @return {number} The elements of the matrix
+     */
+    this.getElems = function() {
+      return copy2dArray(elems);
     }
-    for(var i=0; i<rows; i+=1) {
-      cols = array[i].length;
-      if(!colsTmp) colsTmp = cols;
-      if(colsTmp!==cols) {
-        throw errMsg("Array has a different amount of elements in the rows!", "va-mx-003");
+    /**
+     * Gets an amount of rows of the matrix.
+     *
+     * @memberof lalgebra.Matrix
+     * @return {number} An amount of rows
+     */
+    this.getRows = function() {
+      return rows;
+    }
+    /**
+     * Gets an amount of columns of the matrix.
+     *
+     * @memberof lalgebra.Matrix
+     * @return {number} An amount of columns
+     */
+    this.getCols = function() {
+      return cols;
+    }
+    /**
+     * Gets an element of the matrix.
+     *
+     * @memberof lalgebra.Matrix
+     * @param {number} idxRow An index of the row
+     * @param {number} idxCol An index of the column
+     * @return {number} An element of the matrix
+     */
+    this.getElem = function(idxRow, idxCol) {
+      if(inRange(idxRow, idxCol));
+
+      return elems[idxRow][idxCol];
+    }
+    /**
+     * Sets a value to the element of the matrix.
+     *
+     * @memberof lalgebra.Matrix
+     * @param {number} val A value for the element 
+     * @param {number} idxRow An index of the row
+     * @param {number} idxCol An index of the column
+     */
+    this.setElem = function(val, idxRow, idxCol) {
+      if(isNumber(val) && inRange(idxRow, idxCol)) {
+        elems[idxRow][idxCol] = val;
       }
-      colsTmp = cols;
     }
-    this.array = array;
-    this.rows = rows;
-    this.cols = cols;
+    this.initElems(array);
+    /**
+     * Checks an index range.
+     *
+     * @param {number} idxRow An index of the row
+     * @param {number} idxCol An index of the column
+     * @return {boolean} Returns true if the value is in a range
+     * @throws The index out of range.
+     */
+    function inRange(idxRow, idxCol) {
+      if(idxRow>=rows || idxRow<0 || idxCol>=cols || idxCol<0) {
+        throw errMsg("The index out of range!", "la-mx-001");
+      }
+      return true;
+    }
   }
   /**
    * Displays the array elements into columns like in matrixes.
    * @memberof lalgebra.Matrix
    */
   Matrix.prototype.trace = function() {
-    var str; 
-    for(var i=0; i<this.rows; i+=1)
+    var rows = this.getRows();
+    var cols = this.getCols();
+    var getElem = this.getElem;
+    var str;
+
+    for(var i=0; i<rows; i+=1)
     {
-      str = "["+String(this.array[i][0]);
-      for(var j=1; j<this.cols; j+=1)
-        str = str +","+ String(this.array[i][j]);
+      str = "["+String(getElem(i, 0));
+      for(var j=1; j<cols; j+=1)
+        str = str +","+ String(getElem(i, j));
       str = str + "]";
       console.log(str);
     }
@@ -100,20 +211,28 @@ var lalgebra = (function() {
    */
   Matrix.prototype.multiply = function(matrix) { 
     if(!(matrix instanceof Matrix)) {
-      throw errMsg("Attempt to multiply by an undefined matrix!", "va-mx-004");
+      throw errMsg("Attempt to multiply by an undefined matrix!", "la-mx-002");
     }
-    if(this.cols!==matrix.rows) { 
-      throw errMsg("Attempt multiplied a matrix with dimensions "+this.rows+"x"+this.cols+
-                  " by a matrix with dimensions "+matrix.rows+"x"+matrix.cols+"!", "va-mx-005");
-    }
-    var arrTmp = get2dArray(this.rows);
+    var getElem1 = this.getElem;
+    var getElem2 = matrix.getElem;
 
-    for (var i=0; i<this.rows; i+=1)
-      for (var j=0; j<matrix.cols; j+=1)
+    var rowsMx1 = this.getRows();
+    var colsMx1 = this.getCols();
+    var rowsMx2 = matrix.getRows();
+    var colsMx2 = matrix.getCols();
+
+    if(colsMx1!==rowsMx2) { 
+      throw errMsg("Attempt to multiply a matrix with dimensions "+rowsMx1+"x"+colsMx1+
+                  " by a matrix with dimensions "+rowsMx2+"x"+colsMx2+"!", "la-mx-003");
+    }
+    var arrTmp = get2dArray(rowsMx1);
+
+    for (var i=0; i<rowsMx1; i+=1)
+      for (var j=0; j<colsMx2; j+=1)
       {
         arrTmp[i][j] = 0;
-        for (var k=0; k<this.cols; k+=1)
-        arrTmp[i][j] += this.array[i][k] * matrix.array[k][j];
+        for (var k=0; k<colsMx1; k+=1)
+        arrTmp[i][j] += getElem1(i, k) * getElem2(k, j);
       }
 
     return new Matrix(arrTmp);
@@ -125,11 +244,15 @@ var lalgebra = (function() {
    * @return {Matrix} A transposed matrix
    */
   Matrix.prototype.transpose = function() {
-    var arrTmp = get2dArray(this.cols);
+    var getElem = this.getElem;
+    var rowsMx = this.getRows();
+    var colsMx = this.getCols();
 
-    for(var i=0; i<this.rows; i+=1)
-      for(var j=0; j<this.cols; j+=1)
-        arrTmp[j][i] = this.array[i][j];
+    var arrTmp = get2dArray(colsMx);
+
+    for(var i=0; i<rowsMx; i+=1)
+      for(var j=0; j<colsMx; j+=1)
+        arrTmp[j][i] = getElem(i, j);
 
     return new Matrix(arrTmp);
   }
@@ -140,11 +263,15 @@ var lalgebra = (function() {
    * @return {Matrix} A copy of the matrix
    */
   Matrix.prototype.getCopy = function() {
-    var arrTmp = get2dArray(this.rows);
+    var getElem = this.getElem;
+    var rowsMx = this.getRows();
+    var colsMx = this.getCols();
 
-    for(var i=0; i<this.rows; i+=1)
-      for(var j=0; j<this.cols; j+=1)
-        arrTmp[i][j] = this.array[i][j];
+    var arrTmp = get2dArray(rowsMx);
+
+    for(var i=0; i<rowsMx; i+=1)
+      for(var j=0; j<colsMx; j+=1)
+        arrTmp[i][j] = getElem(i, j);
 
     return new Matrix(arrTmp);
   }
@@ -154,18 +281,27 @@ var lalgebra = (function() {
    * @memberof lalgebra.Matrix
    * @param {Matrix} idxRow The index of the row
    * @param {Matrix} idxCol The index of the column
-   * @return {Matrix} An minor
+   * @return {Matrix} A minor of the matrix
    */
   Matrix.prototype.getMinor = function(idxRow, idxCol) {
-    var tmpMatrix = this.getCopy();
-    tmpMatrix.array.splice(idxRow, 1);
-    tmpMatrix.rows -= 1;
-    tmpMatrix.cols -= 1;
+    var getElem = this.getElem;
+    var rowsMx = this.getRows();
+    var colsMx = this.getCols();
 
-    for(var i=0; i<tmpMatrix.rows; i++) {
-      tmpMatrix.array[i].splice(idxCol, 1);
+    var arrTmp = get2dArray(rowsMx-1);
+
+    for(var i=0, ii=0; i<rowsMx; i+=1) {
+      if(i!==idxRow) {
+        for(var j=0, jj=0; j<colsMx; j+=1) {
+          if(j!==idxCol) {
+            arrTmp[ii][jj] = getElem(i, j);
+            jj+=1;
+          }
+        }
+        ii+=1;
+      }
     }
-    return tmpMatrix;
+    return new Matrix(arrTmp);
   }
   /**
    * Computes a determinant of the matrix.
@@ -175,18 +311,21 @@ var lalgebra = (function() {
    * @throws Attempt to transpose a non quadratic matrix.
    */
   Matrix.prototype.determinant = function() {
+    var getElem = this.getElem;
+    var rowsMx = this.getRows();
+    var colsMx = this.getCols();
     var det = 0;
 
-    if(this.rows!==this.cols) {
-      throw errMsg("Attempt to transpose a non quadratic matrix!", "va-mx-007");
+    if(rowsMx!==colsMx) {
+      throw errMsg("Attempt to transpose a non quadratic matrix!", "la-mx-004");
     }
-    switch(this.rows) {
+    switch(rowsMx) {
       case 2: 
-        det = this.array[0][0] * this.array[1][1] - this.array[0][1] * this.array[1][0];
+        det = getElem(0, 0) * getElem(1, 1) - getElem(0, 1) * getElem(1, 0);
         break;
       default: 
-        for(var j=0; j<this.cols; j++)
-          det = det + this.array[0][j] * Math.pow(-1, 2 + j) * this.getMinor(0, j).determinant();
+        for(var j=0; j<colsMx; j++)
+          det = det + getElem(0, j) * Math.pow(-1, 2 + j) * this.getMinor(0, j).determinant();
     }
 
     return det;
@@ -196,24 +335,21 @@ var lalgebra = (function() {
    *
    * @memberof lalgebra.Matrix
    * @return {Matrix} An inversed matrix
-   * @throws Attempt to inverse a non quadratic matrix.
    * @throws Inverse matrix does not exist.
    */
   Matrix.prototype.inverse = function() {
-    if(this.rows!==this.cols) {
-      throw errMsg("Attempt to inverse a non quadratic matrix!", "va-mx-008");
-    }
-        
+    var rowsMx = this.getRows();
+    var colsMx = this.getCols();
     var det = this.determinant();
     
     if(det===0) {
-      throw errMsg("Inverse matrix does not exist!", "va-mx-009");
+      throw errMsg("Inverse matrix does not exist!", "la-mx-005");
     }
 
-    var arrTmp = get2dArray(this.rows);
+    var arrTmp = get2dArray(rowsMx);
 
-    for(var i=0; i<this.rows; i+=1)
-      for(var j=0; j<this.cols; j+=1)
+    for(var i=0; i<rowsMx; i+=1)
+      for(var j=0; j<colsMx; j+=1)
         arrTmp[i][j] = Math.pow(-1, 2 + i + j) * this.getMinor(i, j).determinant() / det;
 
     return (new Matrix(arrTmp)).transpose();
@@ -337,3 +473,22 @@ var lalgebra = (function() {
             "normal": normal
           };
 }());
+
+var Matrix = lalgebra.Matrix;
+//------------------------------------------
+var array = 
+  [[1, 0, 0],
+   [1, 1, 1],
+   [0, 0, 1]];
+var array2= 
+  [[1, 0, 0],
+   [0, 1, 0],
+   [0, 0, 1]];
+var mx = new Matrix(array);
+var mx2 = new Matrix(array2);
+var mxRes = mx.multiply(mx2);
+mxRes.trace();
+console.log(mx.getElem(2,1));
+console.log(mx.getRows()+" x "+mx.getCols());
+
+mxRes.getMinor(0,0).trace();
