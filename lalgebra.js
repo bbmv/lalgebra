@@ -367,9 +367,9 @@ var lalgebra = (function() {
   function getIntersection(a1, a2, b1, b2) {
     var inter = {};
 
-    if(tripleProduct({x:a2.x-a1.x, y:a2.y-a1.y, z:a2.z-a1.z}, 
-      {x:b2.x-b1.x, y:b2.y-b1.y, z:b2.z-b1.z}, 
-      {x:a2.x-b1.x, y:a2.y-b1.y, z:a2.z-b1.z})!=0)  {
+    if(tripleProduct({"x":a2.x-a1.x, "y":a2.y-a1.y, "z":a2.z-a1.z}, 
+      {"x":b2.x-b1.x, "y":b2.y-b1.y, "z":b2.z-b1.z}, 
+      {"x":a2.x-b1.x, "y":a2.y-b1.y, "z":a2.z-b1.z})!=0)  {
       console.log("Отрезки в разных плоскостях!");
       return false;
     }
@@ -414,9 +414,9 @@ var lalgebra = (function() {
    * @return {object} A vector product of two vectors
    */
   function vectorProduct(a, b) {
-    return  { x: a.y*b.z - a.z*b.y,
-              y: a.z*b.x - a.x*b.z,
-              z: a.x*b.y - a.y*b.x };
+    return  { "x": a.y*b.z - a.z*b.y,
+              "y": a.z*b.x - a.x*b.z,
+              "z": a.x*b.y - a.y*b.x };
   }
   /**
    * Computes a scalar (dot) product of two vectors.
@@ -451,8 +451,8 @@ var lalgebra = (function() {
    * @return {object} A normal
    */
   function normal(a, b, c) {
-    var ab = { x:b.x-a.x, y:b.y-a.y, z:b.z-a.z }, 
-        ac = { x:c.x-a.x, y:c.y-a.y, z:c.z-a.z };
+    var ab = { "x":b.x-a.x, "y":b.y-a.y, "z":b.z-a.z }, 
+        ac = { "x":c.x-a.x, "y":c.y-a.y, "z":c.z-a.z };
     var prod = vectorProduct(ab, ac);
 
     if(prod===0) {
