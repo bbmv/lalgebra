@@ -47,6 +47,9 @@ This library contains functions and a class for working with elements of linear 
 ``` lalgebra.Matrix.Matrix#transpose() ```
 \- *Transposes the matrix.*
 
+``` lalgebra.Matrix.Matrix#normolize() ```
+\- *Normolizes the matrix of an object in homogeneous coordinates to get a back projection into the actual dimensional space.*
+
 ``` lalgebra.getIntersection(a1, a2, b1, b2) ```
 \- *Finds an intersection of two segments.*
 
@@ -65,7 +68,15 @@ This library contains functions and a class for working with elements of linear 
 ``` lalgebra.vectorProduct(a, b) ```
 \- *Computes a vector (cross) product of two vectors.*
 
+``` lalgebra.getAngles(vector) ```
+\- *Computes two angles: first - between a vector projection on the plane y=0 and the z-axis, second - between a vector and the y-axis.*
 
+``` lalgebra.cartesianToSpherical(cart) ```
+\- *Converts Cartesian coordinates into spherical coordinates.*
 
+``` lalgebra.radianToDegree(radian) ```
+\- *Converts radians into degrees.*
 
+``` lalgebra.degreeToRadian(degree) ```
+\- *Converts degrees into radians.*
 
