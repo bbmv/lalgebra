@@ -224,6 +224,17 @@ describe("Matrix", function() {
     });
   });
   //------------------------------------------
+  describe("normolize( )", function() {
+    var array = 
+      [[4, 0, 4, 2]];
+    var normolized = 
+      [[2, 0, 2, 1]];
+    it("Normolizes the matrix of an object in homogeneous coordinates", function() {
+      var mx = (new Matrix(array)).normolize();
+      assert.deepEqual(mx.getElems(), normolized);
+    });
+  });
+  //------------------------------------------
   describe("determinant( )", function() {
     var array = 
       [[1, 0, 1, 1],
@@ -266,7 +277,6 @@ describe("Vector operations", function() {
       var b1 = {x:2, y:0, z:0};
       var b2 = {x:0, y:2, z:0};
       var intersectionPoint = {x:1, y:1, z:0};
-      console.log(intersectionPoint);
       var resultPoint = lalgebra.getIntersection(a1, a2, b1, b2);
       assert.deepEqual(resultPoint, intersectionPoint);
     });
@@ -320,6 +330,40 @@ describe("Vector operations", function() {
       var normal = {x:0, y:0, z:1};
       var resultNormal = lalgebra.normal(a, b, c);
       assert.deepEqual(resultNormal, normal);
+    });
+  });
+  //------------------------------------------
+  describe("getAngles( )", function() { 
+    it("Computes two angles", function() { 
+      var vector = {x:3, y:0, z:3};
+      var angles = {a:45, b:90};
+      var resultAngles = lalgebra.getAngles(vector);
+      assert.deepEqual(resultAngles, angles);
+    });
+  });
+  //------------------------------------------
+  describe("cartesianToSpherical( )", function() { 
+    it("Converts Cartesian into spherical coordinates", function() { 
+      var cart = {x:3, y:0, z:3};
+      var spherical = {r:Math.sqrt(9+9),a:0, b:45};
+      var resultSpherical = lalgebra.cartesianToSpherical(cart);
+      assert.deepEqual(resultSpherical, spherical);
+    });
+  });
+  //------------------------------------------
+  describe("radianToDegree( )", function() { 
+    it("Converts radians into degrees", function() { 
+      var degree = 180;
+      var resultDegree = lalgebra.radianToDegree(Math.PI);
+      assert.equal(resultDegree, degree);
+    });
+  });
+  //------------------------------------------
+  describe("degreeToRadian( )", function() { 
+    it("Converts degrees into radians", function() { 
+      var radian = Math.PI;
+      var resultRadian = lalgebra.degreeToRadian(180);
+      assert.equal(resultRadian, radian);
     });
   });
 });

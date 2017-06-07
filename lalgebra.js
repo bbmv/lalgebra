@@ -2,11 +2,11 @@
  * Linear Algebra Library
  * lalgebra.js (c) 2017 Boris Buimov
  * 
- * @version 1.2.0
+ * @version 1.3.0
  * @author Boris Buimov
  * @fileoverview This file contains functions and a class 
  * for working with elements of linear algebra - points, lines, 
- * segments, planes, vectors and matrixes.
+ * segments, planes, spaces, vectors and matrixes.
  */
 /**
  * @namespace
@@ -17,6 +17,7 @@ var lalgebra = (function() {
   /**
    * Creates an object of Error and adds an error code to it.
    * 
+   * @memberof lalgebra
    * @param {string} massage Error message
    * @param {string} code Error code
    * @return {Error} the error object with the message and code
@@ -52,15 +53,15 @@ var lalgebra = (function() {
     return true;
   }
   /**
-   * Copies a two-dimensional array.
+   * Check a two-dimensional array.
    *
    * @param {Array} array A two-dimensional array
-   * @return {Array} A copy of the two-dimensional array
+   * @return {bollean} Returns true if the array is okay
    * @throws Array is undefined.
    * @throws Array has zero dimension.
    * @throws Array has a different amount of elements in the rows.
    */
-  function copy2dArray(array) {
+  function check2dArray(array) {
     var rows, cols, colsTmp, newArr;
 
     if(!(array instanceof Array)) {
@@ -71,8 +72,6 @@ var lalgebra = (function() {
       throw errMsg("Array has zero dimension!", "la-002");
     }
     
-    newArr = get2dArray(rows);
-
     for(var i=0; i<rows; i+=1) {
       cols = array[i].length;
       if(!colsTmp) colsTmp = cols;
@@ -84,9 +83,55 @@ var lalgebra = (function() {
 
     for(var i=0; i<rows; i+=1)
       for(var j=0; j<cols; j+=1) 
-        if(isNumber(array[i][j])) {
-          newArr[i][j] = array[i][j];
-        }
+        if(!isNumber(array[i][j])) return false;
+
+    return true;
+  }
+  /**
+   * Checks the segment for actual points.
+   *
+   * @param {object} segment A segment with two points - p1, p2
+   * @return {boolean} Returns true if successful
+   * @throws Segment should have two points.
+   */
+  function checkSegment(segment) {
+
+    if(!(segment["p1"] && segment["p2"])) {
+      throw errMsg("Segment should have two points: p1 and p2!", "la-005");
+    }
+    var p1 = segment.p1, p2 = segment.p2;
+
+    p1.x = parseFloat(p1.x); 
+    p1.y = parseFloat(p1.y); 
+    p1.z = parseFloat(p1.z);
+    p2.x = parseFloat(p2.x); 
+    p2.y = parseFloat(p2.y); 
+    p2.z = parseFloat(p2.z);
+
+    if(isNaN(p1.x) || isNaN(p1.y) || isNaN(p1.z) || isNaN(p2.x) || isNaN(p2.y) || isNaN(p2.z)) {
+      return false;
+    }
+    return true;
+  }
+  /**
+   * Copies a two-dimensional array.
+   *
+   * @param {Array} array A two-dimensional array
+   * @return {Array} A copy of the two-dimensional array
+   */
+  function copy2dArray(array) {
+    var rows, cols;
+
+    if(!check2dArray(array)) return false;
+
+    rows = array.length;
+    cols = array[0].length;
+
+    newArr = get2dArray(rows);
+
+    for(var i=0; i<rows; i+=1)
+      for(var j=0; j<cols; j+=1) 
+        newArr[i][j] = array[i][j];
 
     return newArr;
   }
@@ -355,6 +400,30 @@ var lalgebra = (function() {
     return (new Matrix(arrTmp)).transpose();
   };  
   /**
+   * Normolizes the matrix of an object in homogeneous coordinates 
+   * to get a back projection into the actual dimensional space.
+   *
+   * @memberof lalgebra.Matrix
+   * @return {Matrix} An normolized matrix
+   */
+  Matrix.prototype.normolize = function() {
+    var rows = this.getRows();
+    var cols = this.getCols();
+    var getElem = this.getElem;
+    var last;
+
+    var arrTmp = get2dArray(rows);
+    
+    for (var i=0; i<rows; i++) {
+      for (var j=0; j<cols; j++) {
+        last = getElem(i, cols-1);
+        if(last!=0) arrTmp[i][j] = getElem(i, j) / last, i, j;
+        else arrTmp[i][j] = 0;
+      }
+    }
+    return new Matrix(arrTmp);
+  };
+  /**
    * Finds an intersection of two segments.
    *
    * @memberof lalgebra
@@ -462,13 +531,97 @@ var lalgebra = (function() {
    
     return prod;  
   }
+  /**
+   * Computes two angles: 
+   * first - between a vector projection on the plane y=0 and the z-axis,
+   * second - between a vector and the y-axis.
+   * It works for all quadrants.
+   * 
+   * @memberof lalgebra
+   * @param {object} vector An end point (x,y,z) of the vector
+   * @return {object} Two angles
+   */
+  function getAngles(vector) {
+    var x = vector.x;
+    var y = vector.y;
+    var z = vector.z;
+    var radianToDegree = lalgebra.radianToDegree;
+    var angles = {};
+    var k=1;
+    
+    if(x<0) k=-1;
+    if(x!==0 || z!==0) {
+      angles.a = radianToDegree(Math.acos(z/Math.sqrt(x*x+z*z)))*k;
+    } else {
+      angles.a = 0;  
+    }
+    angles.b = radianToDegree(Math.acos(y/Math.sqrt(x*x+y*y+z*z)));
+    return angles;
+  }  
+  /**
+   * Converts Cartesian coordinates into spherical coordinates. 
+   * 
+   * @memberof lalgebra
+   * @param {object} cart An end point (x,y,z) of the vector 
+   * @return {object} Spherical coordinates (r,a,b)
+   */
+  function cartesianToSpherical(cart) {
+    var x, y, z, r, a, b;
+    x = cart.x;
+    y = cart.y;
+    z = cart.z;
+
+    r = Math.sqrt(x*x + y*y + z*z);
+    if(r===0) { 
+      a = b = 0;
+    } else {
+      b = Math.acos(z/r);
+      if(x===0) {
+        if(y<0) a = Math.PI*3/2;
+        else a = Math.PI/2;
+      } else {
+        a = Math.atan(y/x);
+        if(x<0) a += Math.PI;
+      }
+    }
+    var sph = { "r":r, "a":radianToDegree(a), "b":radianToDegree(b) };
+    return sph;
+  }
+  /**
+   * Converts radians into degrees. 
+   * 
+   * @memberof lalgebra
+   * @param {number} radian Radians
+   * @return {number} Degrees
+   */
+  function radianToDegree(radian) {
+    return radian*180/Math.PI;
+  }
+  /**
+   * Converts degrees into radians. 
+   * 
+   * @memberof lalgebra
+   * @param {number} degree Degrees
+   * @return {number} Radians
+   */
+  function degreeToRadian(degree) {
+    return degree/180*Math.PI;
+  }
   return  { // API of Linear Algebra Library
+            "errMsg": errMsg,
+            "check2dArray": check2dArray,
+            "checkSegment": checkSegment,
+            "isNumber": isNumber,
             "Matrix": Matrix,
             "getIntersection": getIntersection,
             "vectorMagnitude": vectorMagnitude,
             "vectorProduct": vectorProduct,
             "scalarProduct": scalarProduct,
             "tripleProduct": tripleProduct,
-            "normal": normal
+            "normal": normal,
+            "getAngles": getAngles,
+            "cartesianToSpherical": cartesianToSpherical,
+            "degreeToRadian": degreeToRadian,
+            "radianToDegree": radianToDegree
           };
 }());

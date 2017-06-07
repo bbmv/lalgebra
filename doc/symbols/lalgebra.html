@@ -261,6 +261,33 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.<b><a href="../symbols/lalgebra.html#.cartesianToSpherical">cartesianToSpherical</a></b>(cart)
+								</div>
+								<div class="description">Converts Cartesian coordinates into spherical coordinates.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/lalgebra.html#-check2dArray">check2dArray</a></b>(array)
+								</div>
+								<div class="description">Check a two-dimensional array.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/lalgebra.html#-checkSegment">checkSegment</a></b>(segment)
+								</div>
+								<div class="description">Checks the segment for actual points.</div>
+							</td>
+						</tr>
+					
+						<tr>
 							<td class="attributes">&lt;inner&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/lalgebra.html#-copy2dArray">copy2dArray</a></b>(array)
@@ -270,9 +297,18 @@ ul.inheritsList
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/lalgebra.html#-errMsg">errMsg</a></b>(massage, code)
+								<div class="fixedFont">lalgebra.<b><a href="../symbols/lalgebra.html#.degreeToRadian">degreeToRadian</a></b>(degree)
+								</div>
+								<div class="description">Converts degrees into radians.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.<b><a href="../symbols/lalgebra.html#.errMsg">errMsg</a></b>(massage, code)
 								</div>
 								<div class="description">Creates an object of Error and adds an error code to it.</div>
 							</td>
@@ -284,6 +320,17 @@ ul.inheritsList
 								<div class="fixedFont"><b><a href="../symbols/lalgebra.html#-get2dArray">get2dArray</a></b>(rows)
 								</div>
 								<div class="description">Creates an empty two-dimensional array.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.<b><a href="../symbols/lalgebra.html#.getAngles">getAngles</a></b>(vector)
+								</div>
+								<div class="description">Computes two angles: 
+first - between a vector projection on the plane y=0 and the z-axis,
+second - between a vector and the y-axis.</div>
 							</td>
 						</tr>
 					
@@ -311,6 +358,15 @@ ul.inheritsList
 								<div class="fixedFont">lalgebra.<b><a href="../symbols/lalgebra.html#.normal">normal</a></b>(a, b, c)
 								</div>
 								<div class="description">Computes a normal to the plane.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">lalgebra.<b><a href="../symbols/lalgebra.html#.radianToDegree">radianToDegree</a></b>(radian)
+								</div>
+								<div class="description">Converts radians into degrees.</div>
 							</td>
 						</tr>
 					
@@ -405,15 +461,58 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="-copy2dArray"> </a>
-					<div class="fixedFont">&lt;inner&gt; 
+					<a name=".cartesianToSpherical"> </a>
+					<div class="fixedFont">&lt;static&gt; 
 					
-					<span class="light">{Array}</span>
-					<b>copy2dArray</b>(array)
+					<span class="light">{object}</span>
+					<span class="light">lalgebra.</span><b>cartesianToSpherical</b>(cart)
 					
 					</div>
 					<div class="description">
-						Copies a two-dimensional array.
+						Converts Cartesian coordinates into spherical coordinates.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{object}</span> <b>cart</b>
+									
+								</dt>
+								<dd>An end point (x,y,z) of the vector</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{object}</span> Spherical coordinates (r,a,b)</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="-check2dArray"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					<span class="light">{bollean}</span>
+					<b>check2dArray</b>(array)
+					
+					</div>
+					<div class="description">
+						Check a two-dimensional array.
 						
 						
 					</div>
@@ -459,6 +558,102 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
+								<dd><span class="light fixedFont">{bollean}</span> Returns true if the array is okay</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="-checkSegment"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					<span class="light">{boolean}</span>
+					<b>checkSegment</b>(segment)
+					
+					</div>
+					<div class="description">
+						Checks the segment for actual points.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{object}</span> <b>segment</b>
+									
+								</dt>
+								<dd>A segment with two points - p1, p2</dd>
+							
+							</dl>
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Throws:</dt>
+							
+								<dt>
+									 <b></b>
+								</dt>
+								<dd>Segment should have two points.</dd>
+							
+							</dl>
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> Returns true if successful</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="-copy2dArray"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					<span class="light">{Array}</span>
+					<b>copy2dArray</b>(array)
+					
+					</div>
+					<div class="description">
+						Copies a two-dimensional array.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Array}</span> <b>array</b>
+									
+								</dt>
+								<dd>A two-dimensional array</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
 								<dd><span class="light fixedFont">{Array}</span> A copy of the two-dimensional array</dd>
 							
 							</dl>
@@ -468,11 +663,54 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="-errMsg"> </a>
-					<div class="fixedFont">&lt;inner&gt; 
+					<a name=".degreeToRadian"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{number}</span>
+					<span class="light">lalgebra.</span><b>degreeToRadian</b>(degree)
+					
+					</div>
+					<div class="description">
+						Converts degrees into radians.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>degree</b>
+									
+								</dt>
+								<dd>Degrees</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number}</span> Radians</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".errMsg"> </a>
+					<div class="fixedFont">&lt;static&gt; 
 					
 					<span class="light">{Error}</span>
-					<b>errMsg</b>(massage, code)
+					<span class="light">lalgebra.</span><b>errMsg</b>(massage, code)
 					
 					</div>
 					<div class="description">
@@ -552,6 +790,52 @@ ul.inheritsList
 							<dt class="heading">Returns:</dt>
 							
 								<dd><span class="light fixedFont">{Array}</span> The empty two-dimensional array</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getAngles"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{object}</span>
+					<span class="light">lalgebra.</span><b>getAngles</b>(vector)
+					
+					</div>
+					<div class="description">
+						Computes two angles: 
+first - between a vector projection on the plane y=0 and the z-axis,
+second - between a vector and the y-axis.
+It works for all quadrants.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{object}</span> <b>vector</b>
+									
+								</dt>
+								<dd>An end point (x,y,z) of the vector</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{object}</span> Two angles</dd>
 							
 							</dl>
 						
@@ -721,6 +1005,49 @@ ul.inheritsList
 							<dt class="heading">Returns:</dt>
 							
 								<dd><span class="light fixedFont">{object}</span> A normal</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".radianToDegree"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{number}</span>
+					<span class="light">lalgebra.</span><b>radianToDegree</b>(radian)
+					
+					</div>
+					<div class="description">
+						Converts radians into degrees.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>radian</b>
+									
+								</dt>
+								<dd>Radians</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number}</span> Degrees</dd>
 							
 							</dl>
 						
@@ -937,7 +1264,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue May 30 2017 15:08:10 GMT+0700 (KRAT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Jun 07 2017 17:45:40 GMT+0700 (KRAT)
 		</div>
 	</body>
 </html>
